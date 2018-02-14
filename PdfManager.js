@@ -28,4 +28,8 @@ export default class PdfManager {
         return PdfManagerNative.loadFile(path, password);
 
     }
+
+    static goToNative(path: string) {
+      return PdfManagerNative.goToNative(path);
+    }
 }

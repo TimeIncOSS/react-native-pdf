@@ -9,6 +9,7 @@
 
 
 #import "PdfManager.h"
+#import "AppDelegate.h"
 
 #if __has_include(<React/RCTAssert.h>)
 #import <React/RCTUtils.h>
@@ -33,6 +34,19 @@ static NSMutableArray *pdfDocRefs = Nil;
 #define RLog( s, ... ) NSLog( @"<%p %@:(%d)> %@", self, [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__] )
 
 RCT_EXPORT_MODULE();
+
+
+RCT_EXPORT_METHOD(goToNative:(NSString *)path
+                  resolver:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject) {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        id appDelegate = [[UIApplication sharedApplication] delegate];
+        [appDelegate goToPdf:path resolver:resolve rejecter:reject];
+        
+    });
+    
+}
 
 
 RCT_EXPORT_METHOD(loadFile:(NSString *)path
