@@ -10,6 +10,7 @@
 		526B80401EABD92200259970 /* RCTPdfPageViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 526B803F1EABD92200259970 /* RCTPdfPageViewManager.m */; };
 		52A324EA1FD3C3FB000B0B18 /* PdfManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A324E91FD3C3FB000B0B18 /* PdfManager.m */; };
 		52F79DB71EB2DA4F00CAD00C /* RCTPdfPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F79DB41EB2DA4F00CAD00C /* RCTPdfPageView.m */; };
+		B6A084FF20350235006E5046 /* BackButtonImage.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A084FE20350235006E5046 /* BackButtonImage.m */; };
 		B6E009A12033CB1200666543 /* CGPDFDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E009652033CB1200666543 /* CGPDFDocument.m */; };
 		B6E009A22033CB1200666543 /* ReaderConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E009672033CB1200666543 /* ReaderConstants.m */; };
 		B6E009A32033CB1200666543 /* ReaderContentPage.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E009692033CB1200666543 /* ReaderContentPage.m */; };
@@ -62,45 +63,8 @@
 		52A324E91FD3C3FB000B0B18 /* PdfManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PdfManager.m; sourceTree = "<group>"; };
 		52F79DB31EB2DA4F00CAD00C /* RCTPdfPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTPdfPageView.h; sourceTree = "<group>"; };
 		52F79DB41EB2DA4F00CAD00C /* RCTPdfPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTPdfPageView.m; sourceTree = "<group>"; };
-		B6301CA62033E69400B48310 /* AppIcon-057.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-057.png"; sourceTree = "<group>"; };
-		B6301CA72033E69400B48310 /* AppIcon-072.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-072.png"; sourceTree = "<group>"; };
-		B6301CA82033E69400B48310 /* AppIcon-076.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-076.png"; sourceTree = "<group>"; };
-		B6301CA92033E69400B48310 /* AppIcon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-114.png"; sourceTree = "<group>"; };
-		B6301CAA2033E69400B48310 /* AppIcon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-120.png"; sourceTree = "<group>"; };
-		B6301CAB2033E69400B48310 /* AppIcon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-144.png"; sourceTree = "<group>"; };
-		B6301CAC2033E69400B48310 /* AppIcon-152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-152.png"; sourceTree = "<group>"; };
-		B6301CAD2033E69400B48310 /* AppIcon-180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon-180.png"; sourceTree = "<group>"; };
-		B6301CAE2033E69400B48310 /* backButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backButton.png; sourceTree = "<group>"; };
-		B6301CAF2033E69400B48310 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		B6301CB02033E69400B48310 /* Reader-Button-H.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Button-H.png"; sourceTree = "<group>"; };
-		B6301CB12033E69400B48310 /* Reader-Button-H@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Button-H@2x.png"; sourceTree = "<group>"; };
-		B6301CB22033E69400B48310 /* Reader-Button-N.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Button-N.png"; sourceTree = "<group>"; };
-		B6301CB32033E69400B48310 /* Reader-Button-N@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Button-N@2x.png"; sourceTree = "<group>"; };
-		B6301CB42033E69400B48310 /* Reader-Email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Email.png"; sourceTree = "<group>"; };
-		B6301CB52033E69400B48310 /* Reader-Email@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Email@2x.png"; sourceTree = "<group>"; };
-		B6301CB62033E69400B48310 /* Reader-Export.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Export.png"; sourceTree = "<group>"; };
-		B6301CB72033E69400B48310 /* Reader-Export@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Export@2x.png"; sourceTree = "<group>"; };
-		B6301CB82033E69400B48310 /* Reader-Mark-N.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Mark-N.png"; sourceTree = "<group>"; };
-		B6301CB92033E69400B48310 /* Reader-Mark-N@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Mark-N@2x.png"; sourceTree = "<group>"; };
-		B6301CBA2033E69400B48310 /* Reader-Mark-Y.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Mark-Y.png"; sourceTree = "<group>"; };
-		B6301CBB2033E69400B48310 /* Reader-Mark-Y@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Mark-Y@2x.png"; sourceTree = "<group>"; };
-		B6301CBC2033E69400B48310 /* Reader-Print.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Print.png"; sourceTree = "<group>"; };
-		B6301CBD2033E69400B48310 /* Reader-Print@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Print@2x.png"; sourceTree = "<group>"; };
-		B6301CBE2033E69400B48310 /* Reader-Thumbs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Thumbs.png"; sourceTree = "<group>"; };
-		B6301CBF2033E69400B48310 /* Reader-Thumbs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reader-Thumbs@2x.png"; sourceTree = "<group>"; };
-		B6301CC02033E69400B48310 /* SDVReader-CoverPage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SDVReader-CoverPage.png"; sourceTree = "<group>"; };
-		B6301CC12033E69400B48310 /* SDVReader-CoverPage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SDVReader-CoverPage@2x.png"; sourceTree = "<group>"; };
-		B6301CC22033E69400B48310 /* SDVReader-DoublePage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SDVReader-DoublePage.png"; sourceTree = "<group>"; };
-		B6301CC32033E69400B48310 /* SDVReader-DoublePage1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SDVReader-DoublePage1.png"; sourceTree = "<group>"; };
-		B6301CC42033E69400B48310 /* SDVReader-DoublePage1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SDVReader-DoublePage1@2x.png"; sourceTree = "<group>"; };
-		B6301CC52033E69400B48310 /* SDVReader-DoublePage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SDVReader-DoublePage@2x.png"; sourceTree = "<group>"; };
-		B6301CC62033E69400B48310 /* SDVReader-Outline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SDVReader-Outline.png"; sourceTree = "<group>"; };
-		B6301CC72033E69400B48310 /* SDVReader-Outline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SDVReader-Outline@2x.png"; sourceTree = "<group>"; };
-		B6301CC82033E69400B48310 /* SDVReader-SinglePage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SDVReader-SinglePage.png"; sourceTree = "<group>"; };
-		B6301CC92033E69400B48310 /* SDVReader-SinglePage1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SDVReader-SinglePage1.png"; sourceTree = "<group>"; };
-		B6301CCA2033E69400B48310 /* SDVReader-SinglePage1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SDVReader-SinglePage1@2x.png"; sourceTree = "<group>"; };
-		B6301CCB2033E69400B48310 /* SDVReader-SinglePage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SDVReader-SinglePage@2x.png"; sourceTree = "<group>"; };
-		B6301CCC2033E69400B48310 /* shareButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shareButton.png; sourceTree = "<group>"; };
+		B6A084FD20350235006E5046 /* BackButtonImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackButtonImage.h; sourceTree = "<group>"; };
+		B6A084FE20350235006E5046 /* BackButtonImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackButtonImage.m; sourceTree = "<group>"; };
 		B6E009642033CB1200666543 /* CGPDFDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGPDFDocument.h; sourceTree = "<group>"; };
 		B6E009652033CB1200666543 /* CGPDFDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGPDFDocument.m; sourceTree = "<group>"; };
 		B6E009662033CB1200666543 /* ReaderConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderConstants.h; sourceTree = "<group>"; };
@@ -161,6 +125,7 @@
 		B6E0099E2033CB1200666543 /* ThumbsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbsViewController.m; sourceTree = "<group>"; };
 		B6E0099F2033CB1200666543 /* UIXToolbarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIXToolbarView.h; sourceTree = "<group>"; };
 		B6E009A02033CB1200666543 /* UIXToolbarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIXToolbarView.m; sourceTree = "<group>"; };
+		B6E58C172034141C00ACF9E0 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,7 +158,6 @@
 		20D8E0411C8E946C00039823 /* RCTPdf */ = {
 			isa = PBXGroup;
 			children = (
-				B6301CA52033E69400B48310 /* Graphics */,
 				B6E009632033CB1200666543 /* vfr */,
 				52A324E81FD3C3FB000B0B18 /* PdfManager.h */,
 				52A324E91FD3C3FB000B0B18 /* PdfManager.m */,
@@ -201,59 +165,16 @@
 				52F79DB41EB2DA4F00CAD00C /* RCTPdfPageView.m */,
 				526B803E1EABD92200259970 /* RCTPdfPageViewManager.h */,
 				526B803F1EABD92200259970 /* RCTPdfPageViewManager.m */,
+				B6E58C172034141C00ACF9E0 /* Media.xcassets */,
 			);
 			path = RCTPdf;
-			sourceTree = "<group>";
-		};
-		B6301CA52033E69400B48310 /* Graphics */ = {
-			isa = PBXGroup;
-			children = (
-				B6301CA62033E69400B48310 /* AppIcon-057.png */,
-				B6301CA72033E69400B48310 /* AppIcon-072.png */,
-				B6301CA82033E69400B48310 /* AppIcon-076.png */,
-				B6301CA92033E69400B48310 /* AppIcon-114.png */,
-				B6301CAA2033E69400B48310 /* AppIcon-120.png */,
-				B6301CAB2033E69400B48310 /* AppIcon-144.png */,
-				B6301CAC2033E69400B48310 /* AppIcon-152.png */,
-				B6301CAD2033E69400B48310 /* AppIcon-180.png */,
-				B6301CAE2033E69400B48310 /* backButton.png */,
-				B6301CAF2033E69400B48310 /* Default-568h@2x.png */,
-				B6301CB02033E69400B48310 /* Reader-Button-H.png */,
-				B6301CB12033E69400B48310 /* Reader-Button-H@2x.png */,
-				B6301CB22033E69400B48310 /* Reader-Button-N.png */,
-				B6301CB32033E69400B48310 /* Reader-Button-N@2x.png */,
-				B6301CB42033E69400B48310 /* Reader-Email.png */,
-				B6301CB52033E69400B48310 /* Reader-Email@2x.png */,
-				B6301CB62033E69400B48310 /* Reader-Export.png */,
-				B6301CB72033E69400B48310 /* Reader-Export@2x.png */,
-				B6301CB82033E69400B48310 /* Reader-Mark-N.png */,
-				B6301CB92033E69400B48310 /* Reader-Mark-N@2x.png */,
-				B6301CBA2033E69400B48310 /* Reader-Mark-Y.png */,
-				B6301CBB2033E69400B48310 /* Reader-Mark-Y@2x.png */,
-				B6301CBC2033E69400B48310 /* Reader-Print.png */,
-				B6301CBD2033E69400B48310 /* Reader-Print@2x.png */,
-				B6301CBE2033E69400B48310 /* Reader-Thumbs.png */,
-				B6301CBF2033E69400B48310 /* Reader-Thumbs@2x.png */,
-				B6301CC02033E69400B48310 /* SDVReader-CoverPage.png */,
-				B6301CC12033E69400B48310 /* SDVReader-CoverPage@2x.png */,
-				B6301CC22033E69400B48310 /* SDVReader-DoublePage.png */,
-				B6301CC32033E69400B48310 /* SDVReader-DoublePage1.png */,
-				B6301CC42033E69400B48310 /* SDVReader-DoublePage1@2x.png */,
-				B6301CC52033E69400B48310 /* SDVReader-DoublePage@2x.png */,
-				B6301CC62033E69400B48310 /* SDVReader-Outline.png */,
-				B6301CC72033E69400B48310 /* SDVReader-Outline@2x.png */,
-				B6301CC82033E69400B48310 /* SDVReader-SinglePage.png */,
-				B6301CC92033E69400B48310 /* SDVReader-SinglePage1.png */,
-				B6301CCA2033E69400B48310 /* SDVReader-SinglePage1@2x.png */,
-				B6301CCB2033E69400B48310 /* SDVReader-SinglePage@2x.png */,
-				B6301CCC2033E69400B48310 /* shareButton.png */,
-			);
-			path = Graphics;
 			sourceTree = "<group>";
 		};
 		B6E009632033CB1200666543 /* vfr */ = {
 			isa = PBXGroup;
 			children = (
+				B6A084FD20350235006E5046 /* BackButtonImage.h */,
+				B6A084FE20350235006E5046 /* BackButtonImage.m */,
 				B6E009642033CB1200666543 /* CGPDFDocument.h */,
 				B6E009652033CB1200666543 /* CGPDFDocument.m */,
 				B6E009662033CB1200666543 /* ReaderConstants.h */,
@@ -391,6 +312,7 @@
 				B6E009AC2033CB1200666543 /* ReaderThumbFetch.m in Sources */,
 				B6E009B22033CB1200666543 /* ReaderViewController+SDVReaderViewControllerPassThrough.m in Sources */,
 				B6E009B92033CB1200666543 /* SDVThumbsViewController.m in Sources */,
+				B6A084FF20350235006E5046 /* BackButtonImage.m in Sources */,
 				B6E009AB2033CB1200666543 /* ReaderThumbCache.m in Sources */,
 				B6E009A72033CB1200666543 /* ReaderDocumentOutline.m in Sources */,
 				B6E009B62033CB1200666543 /* SDVReaderMainToolbar.m in Sources */,
