@@ -29,7 +29,11 @@ export default class PdfManager {
 
     }
 
-    static goToNative(path: string) {
-      return PdfManagerNative.goToNative(path);
+    static goToNative(path: string,
+                      title: string,
+                      page,
+                      isPreview,
+                      readerViewPages) {
+      return PdfManagerNative.goToNative(path, page | 1, isPreview | false, readerViewPages | null);
     }
 }

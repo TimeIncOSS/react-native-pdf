@@ -37,12 +37,16 @@ RCT_EXPORT_MODULE();
 
 
 RCT_EXPORT_METHOD(goToNative:(NSString *)path
+                  title:(NSString *)title
+                  startPage:(NSInteger *)page
+                  isPreview:(BOOL)isPreview
+                  readerViewPages:(NSArray *)readerViewPages
                   resolver:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject) {
     
     dispatch_async(dispatch_get_main_queue(), ^{
         id appDelegate = [[UIApplication sharedApplication] delegate];
-        [appDelegate goToPdf:path resolver:resolve rejecter:reject];
+        [appDelegate goToPdf:path title:title startPage:page isPreview:isPreview readerViewPages:readerViewPages  resolver:resolve rejecter:reject];
         
     });
     
