@@ -16,18 +16,24 @@
     float width = rect.size.width;
     float height = rect.size.height;
     CGContextRef context = UIGraphicsGetCurrentContext();
+    float lineWidth = .1;
+    float OffsetFromRight = 0;
+    // The center square has hypotenuse lineWidth and side length lineWidth / sqrt(2)
+    // The triangles on the corner have hypotenuse (lineWidth / sqrt(2)) and edge length ((lineWidth / sqrt(2)) / sqrt(2)) == (lineWidth / 2)
     
     CGContextBeginPath(context);
-    CGContextMoveToPoint(context, width * .95, height * 0.0/10.0);
-    CGContextAddLineToPoint(context, width * 0.5, height * 5.0/10.0);
-    CGContextAddLineToPoint(context, width * .95, height * 10.0/10.0);
-    CGContextAddLineToPoint(context, width * 1.0, height * 9.5/10.0);
-    CGContextAddLineToPoint(context, width * 0.6, height * 5.0/10.0);
-    CGContextAddLineToPoint(context, width * 1.0, height * 0.5/10.0);
+    CGContextMoveToPoint(context, width * (1.0 - lineWidth / 2) - OffsetFromRight, height * 0.0/10.0);
+    CGContextAddLineToPoint(context, width * 0.5 - OffsetFromRight, height * 5.0/10.0);
+    CGContextAddLineToPoint(context, width * (1.0 - lineWidth / 2) - OffsetFromRight, height * 10.0/10.0);
+    CGContextAddLineToPoint(context, width * 1.0 - OffsetFromRight, height * (1.0 - lineWidth / 2));
+    CGContextAddLineToPoint(context, width * (.5 + lineWidth) - OffsetFromRight, height * 5.0/10.0);
+    CGContextAddLineToPoint(context, width * 1.0 - OffsetFromRight, height * lineWidth / 2);
     CGContextClosePath(context);
     
     CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
     CGContextFillPath(context);
+    
 }
 
 @end
+
