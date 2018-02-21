@@ -19,6 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor whiteColor];
 
     self.view.frame = CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height-20);
     UINavigationBar* navBar = [[UINavigationBar alloc] initWithFrame:[self navBarRect]];
@@ -41,11 +43,12 @@
 }
 
 -(CGRect) navBarRect {
-    return CGRectMake(0, 0, self.view.frame.size.width, 60);
+    return CGRectMake(0, 0, self.view.frame.size.width, 45);
 }
 
 -(CGRect) webViewRect {
-    return CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height-20);
+    CGFloat verticalOffset = self.navBar.viewForBaselineLayout.frame.origin.y + self.navBar.viewForBaselineLayout.frame.size.height;
+    return CGRectMake(0, verticalOffset, self.view.frame.size.width, self.view.frame.size.height-verticalOffset);
 }
 
 - (void) viewWillLayoutSubviews {
