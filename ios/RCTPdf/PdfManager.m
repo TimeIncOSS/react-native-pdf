@@ -40,7 +40,7 @@ RCT_EXPORT_METHOD(goToNative:(NSString *)path
                   title:(NSString *)title
                   startPage:(NSInteger *)page
                   isPreview:(BOOL)isPreview
-                  readerViewPages:(NSArray *)readerViewPages
+                  readerViewPages:(NSDictionary *)readerViewPages
                   resolver:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject) {
     

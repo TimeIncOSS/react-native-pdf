@@ -10,6 +10,7 @@
 		526B80401EABD92200259970 /* RCTPdfPageViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 526B803F1EABD92200259970 /* RCTPdfPageViewManager.m */; };
 		52A324EA1FD3C3FB000B0B18 /* PdfManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A324E91FD3C3FB000B0B18 /* PdfManager.m */; };
 		52F79DB71EB2DA4F00CAD00C /* RCTPdfPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52F79DB41EB2DA4F00CAD00C /* RCTPdfPageView.m */; };
+		B65B9AD2203D15A2008F51CE /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B65B9AD1203D15A2008F51CE /* WebViewController.m */; };
 		B6A084FF20350235006E5046 /* BackButtonImage.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A084FE20350235006E5046 /* BackButtonImage.m */; };
 		B6E009A12033CB1200666543 /* CGPDFDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E009652033CB1200666543 /* CGPDFDocument.m */; };
 		B6E009A22033CB1200666543 /* ReaderConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E009672033CB1200666543 /* ReaderConstants.m */; };
@@ -63,6 +64,8 @@
 		52A324E91FD3C3FB000B0B18 /* PdfManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PdfManager.m; sourceTree = "<group>"; };
 		52F79DB31EB2DA4F00CAD00C /* RCTPdfPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTPdfPageView.h; sourceTree = "<group>"; };
 		52F79DB41EB2DA4F00CAD00C /* RCTPdfPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTPdfPageView.m; sourceTree = "<group>"; };
+		B65B9AD0203D15A2008F51CE /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		B65B9AD1203D15A2008F51CE /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		B6A084FD20350235006E5046 /* BackButtonImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackButtonImage.h; sourceTree = "<group>"; };
 		B6A084FE20350235006E5046 /* BackButtonImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackButtonImage.m; sourceTree = "<group>"; };
 		B6E009642033CB1200666543 /* CGPDFDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGPDFDocument.h; sourceTree = "<group>"; };
@@ -175,6 +178,8 @@
 			children = (
 				B6A084FD20350235006E5046 /* BackButtonImage.h */,
 				B6A084FE20350235006E5046 /* BackButtonImage.m */,
+				B65B9AD0203D15A2008F51CE /* WebViewController.h */,
+				B65B9AD1203D15A2008F51CE /* WebViewController.m */,
 				B6E009642033CB1200666543 /* CGPDFDocument.h */,
 				B6E009652033CB1200666543 /* CGPDFDocument.m */,
 				B6E009662033CB1200666543 /* ReaderConstants.h */,
@@ -305,6 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6E009B52033CB1200666543 /* SDVReaderMainPagebar.m in Sources */,
+				B65B9AD2203D15A2008F51CE /* WebViewController.m in Sources */,
 				B6E009BB2033CB1200666543 /* ThumbsMainToolbar.m in Sources */,
 				B6E009BE2033CB1200666543 /* UIXToolbarView.m in Sources */,
 				B6E009BA2033CB1200666543 /* ThumbsMainToolbar+SDVThumbsMainToolbarPassThrough.m in Sources */,
