@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface WebViewController : UIViewController
+    @property NSMutableDictionary *viewerOptions;
     @property NSString *url;
 @end

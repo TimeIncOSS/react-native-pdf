@@ -24,8 +24,8 @@
 
     self.view.frame = CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height-20);
     UINavigationBar* navBar = [[UINavigationBar alloc] initWithFrame:[self navBarRect]];
-    
-    UINavigationItem* navItem = [[UINavigationItem alloc] initWithTitle:@""];
+    NSString* title = [[self.viewerOptions objectForKey:@"title"]objectForKey:@"title"];
+    UINavigationItem* navItem = [[UINavigationItem alloc] initWithTitle:title];
     UIBarButtonItem* doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onTapDone:)];
     navItem.rightBarButtonItem = doneBtn;
     
