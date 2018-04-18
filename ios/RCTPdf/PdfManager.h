@@ -11,13 +11,17 @@
 
 #if __has_include(<React/RCTAssert.h>)
 #import <React/RCTBridgeModule.h>
+#import <React/RCTEventEmitter.h>
 #else
 #import "RCTBridgeModule.h"
+#import "RCTEventEmitter.h"
 #endif
 
 
-@interface PdfManager : NSObject <RCTBridgeModule>
+@interface PdfManager : RCTEventEmitter <RCTBridgeModule>
 
 + (CGPDFDocumentRef) getPdf:(NSUInteger) index;
+
+- (void)sendEvent;
 
 @end

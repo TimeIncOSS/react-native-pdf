@@ -46,7 +46,7 @@ RCT_EXPORT_METHOD(goToNative:(NSString *)path
     
     dispatch_async(dispatch_get_main_queue(), ^{
         id appDelegate = [[UIApplication sharedApplication] delegate];
-        [appDelegate goToPdf:path title:title startPage:page isPreview:isPreview readerViewPages:readerViewPages  resolver:resolve rejecter:reject];
+        [appDelegate goToPdf:path title:title startPage:page isPreview:isPreview readerViewPages:readerViewPages segmentNotifier:self resolver:resolve rejecter:reject];
         
     });
     
@@ -113,15 +113,15 @@ RCT_EXPORT_METHOD(loadFile:(NSString *)path
     return NULL;
 }
 
-- (instancetype)init
-{
-    
-    if ((self = [super init])) {
-        
-    }
-    return self;
-    
-}
+//- (instancetype)init
+//{
+//
+//    if ((self = [super init])) {
+//
+//    }
+//    return self;
+//
+//}
 
 - (void)dealloc
 {
@@ -139,5 +139,9 @@ RCT_EXPORT_METHOD(loadFile:(NSString *)path
     
 }
 
+- (NSArray<NSString *> *)supportedEvents
+{
+    return @[@"SegmentData"];
+}
 
 @end

@@ -24,8 +24,8 @@
 
     self.view.frame = CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height-20);
     UINavigationBar* navBar = [[UINavigationBar alloc] initWithFrame:[self navBarRect]];
-    
-    UINavigationItem* navItem = [[UINavigationItem alloc] initWithTitle:@""];
+    NSString* title = [[self.viewerOptions objectForKey:@"title"]objectForKey:@"title"];
+    UINavigationItem* navItem = [[UINavigationItem alloc] initWithTitle:title];
     UIBarButtonItem* doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onTapDone:)];
     navItem.rightBarButtonItem = doneBtn;
     
@@ -64,8 +64,13 @@
 }
 
 -(void)onTapDone:(UIBarButtonItem*)item{
-    [self dismissViewControllerAnimated:true completion:nil];
+    [self.analytics sendEventWithName:@"SegmentData" body:
+     @{
+       @"pageName": @"pdf_view",
+       @"action": @"close_reader_view",
+       @"templateType": @"issue"}];
 
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 /*
 #pragma mark - Navigation
