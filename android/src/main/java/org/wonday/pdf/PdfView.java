@@ -61,22 +61,31 @@ public class PdfView extends PDFView implements OnPageChangeListener,OnLoadCompl
     private FitPolicy fitPolicy = FitPolicy.WIDTH;
     private static PdfView instance = null;
     private boolean isMove = false;
-
+    private PdfLoadActions pdfLoadActions;
     private float lastPageWidth = 0;
     private float lastPageHeight = 0;
 
+    public int currentPage = 0;
 
-    public PdfView(ThemedReactContext context, AttributeSet set){
+    public int totalPage = 0;
+
+
+
+    public PdfView(ThemedReactContext context, AttributeSet set,PdfLoadActions pdfLoadActions){
         super(context,set);
         this.context = context;
         this.instance = this;
+        this.pdfLoadActions = pdfLoadActions;
     }
-
+    public int getCurrentPageNumber() {
+        return this.page;
+    }
     @Override
     public void onPageChanged(int page, int numberOfPages) {
         // pdf lib page start from 0, convert it to our page (start from 1)
         page = page+1;
         this.page = page;
+        this.currentPage = page;
         showLog(format("%s %s / %s", path, page, numberOfPages));
 
         WritableMap event = Arguments.createMap();
@@ -91,8 +100,10 @@ public class PdfView extends PDFView implements OnPageChangeListener,OnLoadCompl
 
     @Override
     public void loadComplete(int numberOfPages) {
-
+        this.currentPage = this.page;
+        this.totalPage = numberOfPages;
         this.zoomTo(this.scale);
+        this.pdfLoadActions.pdfLoadFinished();
 
         WritableMap event = Arguments.createMap();
         event.putString("message", "loadComplete|"+numberOfPages);
@@ -102,6 +113,8 @@ public class PdfView extends PDFView implements OnPageChangeListener,OnLoadCompl
             "topChange",
             event
          );
+
+
     }
 
     @Override
@@ -201,6 +214,7 @@ public class PdfView extends PDFView implements OnPageChangeListener,OnLoadCompl
 
     // page start from 1
     public void setPage(int page) {
+        System.out.println("last viewed page number "+page);
         this.page = page>1?page:1;
     }
 

@@ -11,16 +11,21 @@ package org.wonday.pdf;
 import java.io.File;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.ViewGroup;
 import android.util.Log;
 import android.graphics.PointF;
 import android.net.Uri;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.common.SystemClock;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
@@ -32,12 +37,16 @@ import static java.lang.String.format;
 import java.lang.ClassCastException;
 
 import com.github.barteksc.pdfviewer.util.FitPolicy;
+import com.warkiz.widget.IndicatorSeekBar;
 
-public class RCTPdfManager extends SimpleViewManager<PdfView> {
+
+public class RCTPdfManager extends SimpleViewManager<PdfMainView> implements PdfLoadActions {
     private static final String REACT_CLASS = "RCTPdf";
     private Context context;
     private PdfView pdfView;
-
+    private PdfMainView pdfMainView;
+    private int totalPages,currentPageNumber;
+    private IndicatorSeekBar indicatorSeekBar;
 
     public RCTPdfManager(ReactApplicationContext reactContext){
         this.context = reactContext;
@@ -49,61 +58,129 @@ public class RCTPdfManager extends SimpleViewManager<PdfView> {
     }
 
     @Override
-    public PdfView createViewInstance(ThemedReactContext context) {
-        this.pdfView = new PdfView(context,null);
-        return pdfView;
-    }
+    public PdfMainView createViewInstance(ThemedReactContext context) {
+        this.pdfMainView = new PdfMainView(context);
+        this.pdfView = new PdfView(context,null,this);
 
+
+        LinearLayout.LayoutParams parentLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+
+        this.pdfMainView.setLayoutParams(parentLayoutParams);
+        this.pdfMainView.setOrientation(LinearLayout.VERTICAL);
+
+        LinearLayout wrapLinearLayout = new LinearLayout(context);
+        wrapLinearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,0,9.5f));
+        RelativeLayout.LayoutParams params  = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        this.pdfView.setLayoutParams(params);
+
+        wrapLinearLayout.addView(this.pdfView);
+        this.pdfMainView.addView(wrapLinearLayout);
+        int totalPages = this.pdfView.getPageCount();
+        int currentPageNumber = this.pdfView.getCurrentPage();
+        System.out.println("total pages"+totalPages);
+        System.out.println("Current page"+currentPageNumber);
+
+        this.indicatorSeekBar = new IndicatorSeekBar.Builder(context).setMin(1)
+                .setBackgroundTrackSize(7)
+                .setIndicatorColor(Color.GRAY)
+//                .setProgress(this.currentPageNumber)
+                .setProgressTrackColor(Color.BLACK)
+                .setThumbColor(Color.BLACK)
+                .build();
+        LinearLayout.LayoutParams seekBarLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,0,1.0f);
+        seekBarLayoutParams.setMargins(0,10,0,0);
+        indicatorSeekBar.setLayoutParams(seekBarLayoutParams);
+        this.pdfMainView.addView(indicatorSeekBar);
+
+
+
+        indicatorSeekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(IndicatorSeekBar seekBar, int progress, float progressFloat, boolean fromUserTouch) {
+                navigateToPage(progress);
+
+            }
+
+            @Override
+            public void onSectionChanged(IndicatorSeekBar seekBar, int thumbPosOnTick, String textBelowTick, boolean fromUserTouch) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(IndicatorSeekBar seekBar, int thumbPosOnTick) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(IndicatorSeekBar seekBar) {
+
+            }
+        });
+
+        return this.pdfMainView;
+    }
+    public  void navigateToPage(int pageNumber) {
+        this.pdfView.jumpTo(pageNumber-1);
+    }
     @Override
-    public void onDropViewInstance(PdfView pdfView) {
-        pdfView = null;
+    public void onDropViewInstance(PdfMainView PdfMainView) {
+
+        this.pdfView = null;
     }
 
     @ReactProp(name = "path")
-    public void setPath(PdfView pdfView, String path) {
-        pdfView.setPath(path);
+    public void setPath(PdfMainView pdfView, String path) {
+        this.pdfView.setPath(path);
     }
 
     // page start from 1
     @ReactProp(name = "page")
-    public void setPage(PdfView pdfView, int page) {
-        pdfView.setPage(page);
+    public void setPage(PdfMainView pdfView, int page) {
+        System.out.println("last viewed page number setPage "+ page);
+        this.pdfView.setPage(page);
     }
 
     @ReactProp(name = "scale")
-    public void setScale(PdfView pdfView, float scale) {
-        pdfView.setScale(scale);
+    public void setScale(PdfMainView pdfView, float scale) {
+        this.pdfView.setScale(scale);
     }
 
     @ReactProp(name = "horizontal")
-    public void setHorizontal(PdfView pdfView, boolean horizontal) {
-        pdfView.setHorizontal(horizontal);
+    public void setHorizontal(PdfMainView pdfView, boolean horizontal) {
+        this.pdfView.setHorizontal(horizontal);
     }
 
     @ReactProp(name = "spacing")
-    public void setSpacing(PdfView pdfView, int spacing) {
-        pdfView.setSpacing(spacing);
+    public void setSpacing(PdfMainView pdfView, int spacing) {
+        this.pdfView.setSpacing(spacing);
     }
 
     @ReactProp(name = "password")
-    public void setPassword(PdfView pdfView, String password) {
-        pdfView.setPassword(password);
+    public void setPassword(PdfMainView pdfView, String password) {
+        this.pdfView.setPassword(password);
     }
 
     @ReactProp(name = "enableAntialiasing")
-    public void setEnableAntialiasing(PdfView pdfView, boolean enableAntialiasing) {
-        pdfView.setEnableAntialiasing(enableAntialiasing);
+    public void setEnableAntialiasing(PdfMainView pdfView, boolean enableAntialiasing) {
+        this.pdfView.setEnableAntialiasing(enableAntialiasing);
     }
 
     @ReactProp(name = "fitPolicy")
-    public void setFitPolycy(PdfView pdfView, int fitPolicy) {
-        pdfView.setFitPolicy(fitPolicy);
+    public void setFitPolycy(PdfMainView pdfView, int fitPolicy) {
+        this.pdfView.setFitPolicy(fitPolicy);
     }
 
     @Override
-    public void onAfterUpdateTransaction(PdfView pdfView) {
+    public void onAfterUpdateTransaction(PdfMainView pdfView) {
         super.onAfterUpdateTransaction(pdfView);
-        pdfView.drawPdf();
+        this.pdfView.drawPdf();
+    }
+
+    @Override
+    public void pdfLoadFinished() {
+        this.totalPages = this.pdfView.getPageCount();
+        this.currentPageNumber = this.pdfView.getCurrentPageNumber();
+        this.indicatorSeekBar.getBuilder().setMax(this.totalPages).setProgress(this.pdfView.getCurrentPageNumber()).apply();
     }
 
 }
