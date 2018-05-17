@@ -87,15 +87,15 @@ public class PdfView extends PDFView implements OnPageChangeListener,OnLoadCompl
         this.page = page;
         this.currentPage = page;
         showLog(format("%s %s / %s", path, page, numberOfPages));
-
-        WritableMap event = Arguments.createMap();
-        event.putString("message", "pageChanged|"+page+"|"+numberOfPages);
-        ReactContext reactContext = (ReactContext)this.getContext();
-        reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(
-            this.getId(),
-            "topChange",
-            event
-         );
+        this.pdfLoadActions.onPageChanged(page,numberOfPages);
+//        WritableMap event = Arguments.createMap();
+//        event.putString("message", "pageChanged|"+page+"|"+numberOfPages);
+//        ReactContext reactContext = (ReactContext)this.getContext();
+//        reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(
+//            this.getId(),
+//            "topChange",
+//            event
+//         );
     }
 
     @Override

@@ -20,6 +20,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 
+import com.crystal.crystalrangeseekbar.interfaces.OnSeekbarFinalValueListener;
+
+import com.crystal.crystalrangeseekbar.widgets.CrystalSeekbar;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContext;
@@ -37,7 +40,7 @@ import static java.lang.String.format;
 import java.lang.ClassCastException;
 
 import com.github.barteksc.pdfviewer.util.FitPolicy;
-import com.warkiz.widget.IndicatorSeekBar;
+
 
 
 public class RCTPdfManager extends SimpleViewManager<PdfMainView> implements PdfLoadActions {
@@ -46,7 +49,8 @@ public class RCTPdfManager extends SimpleViewManager<PdfMainView> implements Pdf
     private PdfView pdfView;
     private PdfMainView pdfMainView;
     private int totalPages,currentPageNumber;
-    private IndicatorSeekBar indicatorSeekBar;
+
+    private CrystalSeekbar crystalSeekbar;
 
     public RCTPdfManager(ReactApplicationContext reactContext){
         this.context = reactContext;
@@ -80,42 +84,31 @@ public class RCTPdfManager extends SimpleViewManager<PdfMainView> implements Pdf
         System.out.println("total pages"+totalPages);
         System.out.println("Current page"+currentPageNumber);
 
-        this.indicatorSeekBar = new IndicatorSeekBar.Builder(context).setMin(1)
-                .setBackgroundTrackSize(7)
-                .setIndicatorColor(Color.GRAY)
-//                .setProgress(this.currentPageNumber)
-                .setProgressTrackColor(Color.BLACK)
-                .setThumbColor(Color.BLACK)
-                .build();
+
+
+
         LinearLayout.LayoutParams seekBarLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,0,1.0f);
         seekBarLayoutParams.setMargins(0,10,0,0);
-        indicatorSeekBar.setLayoutParams(seekBarLayoutParams);
-        this.pdfMainView.addView(indicatorSeekBar);
 
 
 
-        indicatorSeekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeListener() {
+        this.crystalSeekbar = new CrystalSeekbar(context);
+        LinearLayout.LayoutParams crystalSeekbarLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,0,1.0f);
+        seekBarLayoutParams.setMargins(0,10,0,0);
+        this.crystalSeekbar.setLayoutParams(crystalSeekbarLayoutParams);
+
+        this.pdfMainView.addView(this.crystalSeekbar);
+
+        this.crystalSeekbar.setOnSeekbarFinalValueListener(new OnSeekbarFinalValueListener() {
             @Override
-            public void onProgressChanged(IndicatorSeekBar seekBar, int progress, float progressFloat, boolean fromUserTouch) {
-                navigateToPage(progress);
+            public void finalValue(Number value) {
 
-            }
-
-            @Override
-            public void onSectionChanged(IndicatorSeekBar seekBar, int thumbPosOnTick, String textBelowTick, boolean fromUserTouch) {
-
-            }
-
-            @Override
-            public void onStartTrackingTouch(IndicatorSeekBar seekBar, int thumbPosOnTick) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(IndicatorSeekBar seekBar) {
-
+                navigateToPage(value.intValue());
             }
         });
+
+
+
 
         return this.pdfMainView;
     }
@@ -180,7 +173,16 @@ public class RCTPdfManager extends SimpleViewManager<PdfMainView> implements Pdf
     public void pdfLoadFinished() {
         this.totalPages = this.pdfView.getPageCount();
         this.currentPageNumber = this.pdfView.getCurrentPageNumber();
-        this.indicatorSeekBar.getBuilder().setMax(this.totalPages).setProgress(this.pdfView.getCurrentPageNumber()).apply();
+        this.crystalSeekbar.setMinStartValue(this.pdfView.getCurrentPageNumber());
+        this.crystalSeekbar.setMaxValue(this.totalPages);
+    }
+
+    @Override
+    public void onPageChanged(int page, int totalPages) {
+        this.pdfMainView.onPageChanged(page,totalPages);
+        this.totalPages = totalPages;
+        this.currentPageNumber = page;
+        this.crystalSeekbar.setMinStartValue(page).apply();
     }
 
 }

@@ -7,4 +7,5 @@ package org.wonday.pdf;
 public interface PdfLoadActions {
 
         public void pdfLoadFinished();
+        public void onPageChanged(int page,int totalPages);
 }
