@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#3434"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+ <com.crystal.crystalrangeseekbar.widgets.CrystalSeekbar
+     android:id="@+id/crystal_bar"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent" />
+
+ <TextView
+     android:id= "@+id/current_page"
+     android:layout_width="wrap_content"
+     android:layout_height= "wrap_content"
+     android:layout_marginLeft="10dp"
+     android:layout_below="@+id/crystal_bar"
+     android:gravity="center"
+     android:text="100"/>
+ <Button
+     android:text="Reader Mode"
+     android:id="@+id/reader_button"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_below="@+id/crystal_bar"
+     android:backgroundTint="@android:color/transparent"
+
+     android:layout_centerHorizontal="true" />
+
+ <TextView
+     android:id= "@+id/totol_page"
+     android:layout_width="wrap_content"
+     android:layout_height= "wrap_content"
+     android:gravity="center"
+     android:layout_alignParentRight="true"
+     android:layout_marginRight="10dp"
+     android:layout_below="@+id/crystal_bar"
+     android:text="120"/>
+
+</RelativeLayout>

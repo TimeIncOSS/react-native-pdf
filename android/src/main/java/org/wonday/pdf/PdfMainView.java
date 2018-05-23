@@ -28,4 +28,16 @@ public class PdfMainView extends LinearLayout{
                 event
         );
     }
+
+    public void showReader(String url) {
+
+        WritableMap event = Arguments.createMap();
+        event.putString("message", "showReader|"+url);
+        ReactContext reactContext = (ReactContext)this.getContext();
+        reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(
+                this.getId(),
+                "topChange",
+                event
+        );
+    }
 }

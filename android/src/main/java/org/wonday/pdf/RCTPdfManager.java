@@ -11,14 +11,20 @@ package org.wonday.pdf;
 import java.io.File;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.util.Log;
 import android.graphics.PointF;
 import android.net.Uri;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.crystal.crystalrangeseekbar.interfaces.OnSeekbarFinalValueListener;
 
@@ -27,6 +33,7 @@ import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.common.SystemClock;
 import com.facebook.react.uimanager.SimpleViewManager;
@@ -38,6 +45,7 @@ import com.facebook.react.modules.core.DeviceEventManagerModule;
 
 import static java.lang.String.format;
 import java.lang.ClassCastException;
+import java.util.HashMap;
 
 import com.github.barteksc.pdfviewer.util.FitPolicy;
 
@@ -49,6 +57,9 @@ public class RCTPdfManager extends SimpleViewManager<PdfMainView> implements Pdf
     private PdfView pdfView;
     private PdfMainView pdfMainView;
     private int totalPages,currentPageNumber;
+    private HashMap<String,Object> articlesMap;
+    private Button readerModeButton;
+    TextView leftPageIndicator,rightPageIndicator;
 
     private CrystalSeekbar crystalSeekbar;
 
@@ -81,9 +92,6 @@ public class RCTPdfManager extends SimpleViewManager<PdfMainView> implements Pdf
         this.pdfMainView.addView(wrapLinearLayout);
         int totalPages = this.pdfView.getPageCount();
         int currentPageNumber = this.pdfView.getCurrentPage();
-        System.out.println("total pages"+totalPages);
-        System.out.println("Current page"+currentPageNumber);
-
 
 
 
@@ -92,26 +100,35 @@ public class RCTPdfManager extends SimpleViewManager<PdfMainView> implements Pdf
 
 
 
-        this.crystalSeekbar = new CrystalSeekbar(context);
-        LinearLayout.LayoutParams crystalSeekbarLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,0,1.0f);
-        seekBarLayoutParams.setMargins(0,10,0,0);
-        this.crystalSeekbar.setLayoutParams(crystalSeekbarLayoutParams);
 
-        this.pdfMainView.addView(this.crystalSeekbar);
+        RelativeLayout seekBarLayout = (RelativeLayout) LayoutInflater.from(context).inflate(R.layout.seek_bar_layout,this.pdfMainView,false);
+        this.crystalSeekbar = (CrystalSeekbar) seekBarLayout.findViewById(R.id.crystal_bar);
 
+        this.pdfMainView.addView(seekBarLayout);
+
+        leftPageIndicator = (TextView)seekBarLayout.findViewById(R.id.current_page);
+        rightPageIndicator = (TextView)seekBarLayout.findViewById(R.id.totol_page);
+        readerModeButton = (Button) seekBarLayout.findViewById(R.id.reader_button);
+        readerModeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = (String)articlesMap.get(String.valueOf(getCurrentPageNumber()));
+                pdfMainView.showReader(url);
+            }
+        });
         this.crystalSeekbar.setOnSeekbarFinalValueListener(new OnSeekbarFinalValueListener() {
             @Override
             public void finalValue(Number value) {
-
                 navigateToPage(value.intValue());
             }
         });
-
-
-
-
         return this.pdfMainView;
     }
+
+    public int getCurrentPageNumber() {
+        return  this.currentPageNumber;
+    }
+
     public  void navigateToPage(int pageNumber) {
         this.pdfView.jumpTo(pageNumber-1);
     }
@@ -162,7 +179,14 @@ public class RCTPdfManager extends SimpleViewManager<PdfMainView> implements Pdf
     public void setFitPolycy(PdfMainView pdfView, int fitPolicy) {
         this.pdfView.setFitPolicy(fitPolicy);
     }
+    //articleUrlMap
+    @ReactProp(name = "articleUrlMap")
+    public void setFitPolycy(PdfMainView pdfView, ReadableMap articleUrlMap) {
+        this.articlesMap = articleUrlMap.toHashMap();
 
+
+
+    }
     @Override
     public void onAfterUpdateTransaction(PdfMainView pdfView) {
         super.onAfterUpdateTransaction(pdfView);
@@ -175,6 +199,8 @@ public class RCTPdfManager extends SimpleViewManager<PdfMainView> implements Pdf
         this.currentPageNumber = this.pdfView.getCurrentPageNumber();
         this.crystalSeekbar.setMinStartValue(this.pdfView.getCurrentPageNumber());
         this.crystalSeekbar.setMaxValue(this.totalPages);
+        this.rightPageIndicator.setText(String.valueOf(this.totalPages));
+        this.leftPageIndicator.setText(String.valueOf(this.currentPageNumber));
     }
 
     @Override
@@ -182,7 +208,14 @@ public class RCTPdfManager extends SimpleViewManager<PdfMainView> implements Pdf
         this.pdfMainView.onPageChanged(page,totalPages);
         this.totalPages = totalPages;
         this.currentPageNumber = page;
+        this.leftPageIndicator.setText(String.valueOf(this.currentPageNumber));
+
+        if(articlesMap.containsKey(String.valueOf(currentPageNumber))){
+            readerModeButton.setVisibility(View.VISIBLE);
+        }
+        else {
+            readerModeButton.setVisibility(View.INVISIBLE);
+        }
         this.crystalSeekbar.setMinStartValue(page).apply();
     }
-
 }
