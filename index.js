@@ -310,6 +310,9 @@ export default class Pdf extends Component {
             } else if (message[0] === 'showReader') {
                 console.log('message[1] ', message);
                 this.props.onShowReader(message[1])
+            } else if (message[0] === 'onBack') {
+                console.log('message[1] ', message);
+                this.props.onBack()
             }
         }
 
@@ -380,7 +383,7 @@ export default class Pdf extends Component {
 
 if (Platform.OS === "android") {
     var PdfCustom = requireNativeComponent('RCTPdf', Pdf, {
-        nativeOnly: { path: true, onChange: true, articleUrlMap: true },
+        nativeOnly: { path: true, onChange: true, articleUrlMap: true, title: true },
     })
 }
 

@@ -21,6 +21,7 @@ import android.util.Log;
 import android.graphics.PointF;
 import android.net.Uri;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
@@ -58,8 +59,11 @@ public class RCTPdfManager extends SimpleViewManager<PdfMainView> implements Pdf
     private PdfMainView pdfMainView;
     private int totalPages,currentPageNumber;
     private HashMap<String,Object> articlesMap;
-    private Button readerModeButton;
-    TextView leftPageIndicator,rightPageIndicator;
+    private TextView readerModeButton;
+    private ImageButton backButton;
+    private  String titleText;
+    private TextView leftPageIndicator,rightPageIndicator,titleView;
+
 
     private CrystalSeekbar crystalSeekbar;
 
@@ -78,6 +82,22 @@ public class RCTPdfManager extends SimpleViewManager<PdfMainView> implements Pdf
         this.pdfView = new PdfView(context,null,this);
 
 
+        // Header View in Pdfview
+        RelativeLayout relativeLayoutHeaderView = (RelativeLayout) LayoutInflater.from(context).inflate(R.layout.header_layout,this.pdfMainView,false);
+        this.pdfMainView.addView(relativeLayoutHeaderView);
+
+        readerModeButton = (TextView) relativeLayoutHeaderView.findViewById(R.id.reader_button);
+        backButton = (ImageButton) relativeLayoutHeaderView.findViewById(R.id.backButton);
+        titleView = (TextView) relativeLayoutHeaderView.findViewById(R.id.titleView);
+        titleView.setText(titleText);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pdfMainView.backButtonClick();
+            }
+        });
+        //
+
         LinearLayout.LayoutParams parentLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
 
         this.pdfMainView.setLayoutParams(parentLayoutParams);
@@ -94,11 +114,8 @@ public class RCTPdfManager extends SimpleViewManager<PdfMainView> implements Pdf
         int currentPageNumber = this.pdfView.getCurrentPage();
 
 
-
         LinearLayout.LayoutParams seekBarLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,0,1.0f);
         seekBarLayoutParams.setMargins(0,10,0,0);
-
-
 
 
         RelativeLayout seekBarLayout = (RelativeLayout) LayoutInflater.from(context).inflate(R.layout.seek_bar_layout,this.pdfMainView,false);
@@ -108,7 +125,7 @@ public class RCTPdfManager extends SimpleViewManager<PdfMainView> implements Pdf
 
         leftPageIndicator = (TextView)seekBarLayout.findViewById(R.id.current_page);
         rightPageIndicator = (TextView)seekBarLayout.findViewById(R.id.totol_page);
-        readerModeButton = (Button) seekBarLayout.findViewById(R.id.reader_button);
+
         readerModeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -148,6 +165,12 @@ public class RCTPdfManager extends SimpleViewManager<PdfMainView> implements Pdf
     public void setPage(PdfMainView pdfView, int page) {
         System.out.println("last viewed page number setPage "+ page);
         this.pdfView.setPage(page);
+    }
+    @ReactProp(name = "title")
+    public void setPage(PdfMainView pdfView, String title) {
+        System.out.println("title of the page is  "+ title);
+        this.titleText = title;
+        titleView.setText(title);
     }
 
     @ReactProp(name = "scale")
@@ -218,4 +241,6 @@ public class RCTPdfManager extends SimpleViewManager<PdfMainView> implements Pdf
         }
         this.crystalSeekbar.setMinStartValue(page).apply();
     }
+
+
 }
