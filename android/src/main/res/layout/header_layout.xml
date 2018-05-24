@@ -24,7 +24,8 @@
         android:layout_width="175dp"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:textSize="19sp"
+        android:textSize="18sp"
+        android:textStyle="bold"
         android:background="@android:color/transparent"
         android:ellipsize="end"
         android:maxLines="1"
@@ -32,7 +33,7 @@
         android:scrollHorizontally="true"
         android:layout_marginRight="15dp"
         android:textColor="@android:color/black"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="15dp"
         android:layout_toRightOf="@+id/backButton"
         />
     <TextView
